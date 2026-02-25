@@ -8,4 +8,84 @@
 }
 body{
     margin: 0;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    height: 100vh;
+    font-family: Raleway;
+    color: white;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    background-color: #7A9E9F;
+    height: 100%;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 3rem;
+}
+.header > img{
+    width: 3rem;
+}
+.hero{
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    width: 100%;
+}
+.sidebar{
+    box-sizing: border-box;
+    background-color: #EFF1F3;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 3rem;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+button{
+    box-sizing: border-box;
+    background-color: white;
+    color: #4F6367;
+    border: 3px solid #F2F4F3;
+    height: 2.5rem;
+    font-family: WorkSans;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+button:hover{
+    border: 3px solid #7A9E9F;
+    transition: 0.5s;
+}
+.title{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #4F6367;
+    padding-right: 1rem;
+    align-items: center;
+}
+.author{
+    color: #4F6367;
+    text-align: center;
+}
+.author > p > a{
+    text-decoration: none;
+    color: #009FB7;
+}
+.projectSelect{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap: 1rem;
+}
+.addBtn{
+    border-radius: 30px;
+    width: 35px;
+    height: 35px;
 }
