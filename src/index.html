@@ -13,8 +13,29 @@
             <input type="text" id="name" name="name" placeholder="House cleaning, studying, etc..">
         </form>
         <div class="control">
-            <button id="closeBtn">Close</button>
+            <button class="closeBtn">Close</button>
             <button id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+    <div class="popupTodos">
+        <p>Create a new todo</p>
+        <form method="get">
+            <label for="title">Todo title</label>
+            <input type="text" id="title" name="title" placeholder="Wash the dishes, clear desktop, etc..">
+            <label for="description">Todo description</label>
+            <textarea type="text" id="description" name="description" placeholder="House cleaning, studying, etc.."></textarea>
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date">
+            <label for="priority">Priority</label>
+            <select name="priority" id="priority">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+        </form>
+        <div class="control">
+            <button class="closeBtn">Close</button>
+            <button id="createBtn">Create</button>
         </div>
     </div>
     <header class="header">
@@ -47,7 +68,7 @@
             </div>
         </div>
         <div class="container">
-            
+            <button id="addTodos">+</button>
         </div>
     </div>
 </body>

@@ -1,9 +1,11 @@
 import "./style.css";
 const popupWindow = document.querySelector(".popup");
+const popupTodosWindow = document.querySelector(".popupTodos");
 const addProject = document.getElementById("addBtn");
 const confirmBtn = document.getElementById("confirmBtn");
-const closeBtn = document.getElementById("closeBtn");
+const closeBtn = document.querySelectorAll(".closeBtn");
 const allProjects = document.querySelector(".projectSelect");
+const addTodos = document.getElementById("addTodos");
 
 let todos = [];
 
@@ -15,9 +17,14 @@ function ToDo(name, uuid){
 addProject.addEventListener('click', () => {
     popupWindow.style.display = "flex";
 });
-
-closeBtn.addEventListener("click", () => {
-    popupWindow.style.display = "none";
+addTodos.addEventListener("click", () => {
+    popupTodosWindow.style.display = "flex";
+});
+closeBtn.forEach(btn => {
+    btn.addEventListener("click", () => {
+        popupWindow.style.display = "none";
+        popupTodosWindow.style.display = "none";
+    });
 });
 function displayProjectsBtn(todo){
     const newProject = document.createElement("div");
@@ -44,6 +51,12 @@ function getName(){
     todos.push(todo);
     displayProjectsBtn(todo)
 }
+function getTodosValues(){
+    const todoTitle = document.getElementById("title").value;
+    const todoDescription = document.getElementById("description").value;
+    const todoDate = document.getElementById("date").value;
+    const todoPriority = document.getElementById("priority").value;
+};
 confirmBtn.addEventListener("click", () => {
     getName();
     popupWindow.style.display = "none";
