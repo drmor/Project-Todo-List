@@ -28,7 +28,7 @@ body{
 }
 .hero{
     display: grid;
-    grid-template-columns: 2fr 8fr;
+    grid-template-columns: 20% 80%;
     width: 100%;
 }
 .sidebar{
@@ -38,6 +38,7 @@ body{
     flex-direction: column;
     padding: 2rem;
     gap: 3rem;
+    width: 100%;
 }
 .menu{
     display: flex;
@@ -55,6 +56,9 @@ button{
     font-size: 1rem;
     border-radius: 10px;
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 button:hover{
     border: 3px solid #7A9E9F;
