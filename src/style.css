@@ -166,3 +166,45 @@ input, select{
     display: grid;
     grid-template-columns: 80% 20%;
 }
+#addTodos{
+    display: none;
+    position: absolute;
+    background-color: #7A9E9F;
+    color: #EFF1F3;
+    font-size: 2rem;
+    width: 300px;
+    height: 50px;
+    top: 90%;
+    left: 78%;
+}
+#addTodos:hover{
+    border: 3px solid #4F6367;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    color: #4F6367;
+}
+.container > h1{
+    margin: 0;
+}
+.card{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #EFF1F3;
+    border-radius: 10px;
+    padding: 1rem;
+}
+.card > p {
+    margin: 0;
+}
+.cardTitle{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    text-decoration-line: underline;
+}

@@ -8,6 +8,7 @@ const closeBtn = document.querySelectorAll(".closeBtn");
 const projectBtn = document.querySelectorAll(".projectBtn");
 const allProjects = document.querySelector(".projectSelect");
 const addTodos = document.getElementById("addTodos");
+const container = document.querySelector(".container");
 
 let projects = [];
 let currentProject = null;
@@ -54,7 +55,9 @@ function displayProjectsBtn(project){
 
     projectBtn.addEventListener("click", () => {
         currentProject = project;
+        addTodos.style.display = "block";
         console.log("Selected:", currentProject.name);
+        displayProject()
     });
 
     deleteBtn.addEventListener("click", () => {
@@ -87,6 +90,7 @@ confirmBtn.addEventListener("click", () => {
 createBtn.addEventListener("click", () => {
     getTodosValues();
     popupTodosWindow.style.display = "none";
+    displayProject();
     console.log(projects);
 });
 function displayNumberOfProjects(){
@@ -97,3 +101,32 @@ function displayNumberOfProjects(){
     titleDiv.appendChild(title);
 };
 displayNumberOfProjects();
+
+function displayProject(){
+    container.innerHTML = "";
+    const projectTitle = document.createElement("h1");
+    projectTitle.textContent = `Project: ${currentProject.name}`;
+
+    container.appendChild(projectTitle);
+
+    projects[0].todos.forEach(todo => {
+        const todoCard = document.createElement("div");
+        todoCard.classList.add("card");
+        const titleOfTodo = document.createElement("p");
+        titleOfTodo.classList.add("cardTitle");
+        titleOfTodo.textContent = `ToDo: ${todo.title}`;
+        const descriptionOfTodo = document.createElement("p");
+        descriptionOfTodo.innerHTML = `<span style="font-weight:500;">Description:</span> ${todo.description}`;
+        const dateOfTodo = document.createElement("p");
+        dateOfTodo.innerHTML = `<span style="font-weight:500;">Date:</span> ${todo.date}`;
+        const priorityOfTodo = document.createElement("p");
+        priorityOfTodo.innerHTML = `<span style="font-weight:500;">Priority:</span> ${todo.priority}`;
+
+        todoCard.appendChild(titleOfTodo);
+        todoCard.appendChild(descriptionOfTodo);
+        todoCard.appendChild(dateOfTodo);
+        todoCard.appendChild(priorityOfTodo);
+
+        container.appendChild(todoCard);
+    });
+};
