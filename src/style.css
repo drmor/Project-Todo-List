@@ -140,3 +140,7 @@ input{
     padding: 5px;
     border-radius: 5px;
 }
+.projectCard{
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
