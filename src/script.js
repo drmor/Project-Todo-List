@@ -28,26 +28,32 @@ function displayProjectsBtn(todo){
     newProject.appendChild(deleteBtn);
     allProjects.appendChild(newProject);
     projectBtn.textContent = todo.name;
+    projectBtn.id = todo.name;
     deleteBtn.innerHTML = `<span style="color: #F45B69;">X</span>`;
 
     deleteBtn.addEventListener("click", () => {
         todos = todos.filter(p => p.uuid !== todo.uuid);
         newProject.remove();
     });
+    displayNumberOfProjects();
 };
 function getName(){
-    const projectName = document.getElementById("name").value;
+    const projectName = document.getElementById("name").value || "unnamed";
     let uuid = self.crypto.randomUUID();
     const todo = new ToDo(projectName, uuid);
-    if (projectName == ''){
-        todos.push(new ToDo("unnamed", uuid));
-    } else {
-        todos.push(todo);
-    }
+    todos.push(todo);
     displayProjectsBtn(todo)
 }
 confirmBtn.addEventListener("click", () => {
     getName();
-    console.log(todos);
     popupWindow.style.display = "none";
 });
+
+function displayNumberOfProjects(){
+    const titleDiv = document.querySelector(".title");
+    const title = document.createElement("p")
+    titleDiv.innerHTML = "";
+    title.textContent = `Projects (${todos.length})`;
+    titleDiv.appendChild(title);
+};
+displayNumberOfProjects();

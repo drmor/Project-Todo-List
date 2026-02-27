@@ -64,7 +64,7 @@ button:hover{
     border: 3px solid #7A9E9F;
     transition: 0.5s;
 }
-.title{
+.top{
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
