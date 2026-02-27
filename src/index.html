@@ -6,6 +6,17 @@
     <title>To Do</title>
 </head>
 <body>
+    <div class="popup">
+        <p>Create a new project</p>
+        <form method="get">
+            <label for="name">Name for the project</label>
+            <input type="text" id="name" name="name" placeholder="House cleaning, studying, etc..">
+        </form>
+        <div class="control">
+            <button id="closeBtn">Close</button>
+            <button id="confirmBtn">Confirm</button>
+        </div>
+    </div>
     <header class="header">
         <img src="./additional/logo.svg"><h1>To Do</h1>
     </header>
@@ -21,12 +32,11 @@
             <div class="projects">
                 <div class="title">
                     <p>Projects</p>
-                    <button class="addBtn" title="Create new project">+</button>
+                    <button id="addBtn" title="Create new project">+</button>
                 </div>
                 <hr>
                 <div class="projectSelect">
-                    <button>Some info</button>
-                    <button>Some info</button>
+                    
                 </div>
                 <hr>
                 <div class="author">
