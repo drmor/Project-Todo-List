@@ -51,6 +51,7 @@ function displayProjectsBtn(project){
     newProject.appendChild(deleteBtn);
     allProjects.appendChild(newProject);
     projectBtn.textContent = project.name;
+    projectBtn.dataset.action = "open";
     projectBtn.classList.add("projectBtn");
     deleteBtn.innerHTML = `<span style="color: #F45B69;">X</span>`;
 
@@ -64,15 +65,11 @@ function displayProjectsBtn(project){
         console.log("Selected:", currentProject.name);
         displayProject()
     });
-
-    projectBtn.addEventListener("click", (e) => {
-        const index = e.target.getAttribute("data-index");
-        console.log("Нажат проект с индексом:", index);
-    });
     deleteBtn.addEventListener("click", () => {
         projects = projects.filter(p => p.uuid !== project.uuid);
         newProject.remove();
         displayNumberOfProjects();
+        container.innerHTML = "";
     });
     displayNumberOfProjects();
 };
@@ -121,7 +118,7 @@ function displayProject(){
 };
 allProjects.addEventListener("click", (event) => {
     const btn = event.target;
-    if (btn.tagName === "BUTTON") {
+    if (btn.dataset.action === "open") {
         const index = parseInt(btn.dataset.index);
         currentIndex = index;
         displayTodos(index);
