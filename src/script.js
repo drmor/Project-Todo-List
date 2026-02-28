@@ -24,11 +24,12 @@ function Project(name, uuid){
     };
 };
 
-function ToDo(title, description, date, priority){
+function ToDo(title, description, date, priority, check){
     this.title = title;
     this.description = description;
     this.date = date;
     this.priority = priority;
+    this.check = check;
 };
 
 addProject.addEventListener('click', () => {
@@ -87,7 +88,7 @@ function getTodosValues(){
     const todoDescription = document.getElementById("description").value;
     const todoDate = format(document.getElementById("date").value, "MMM dd yyyy");
     const todoPriority = document.getElementById("priority").value;
-    const todo = new ToDo(todoTitle, todoDescription, todoDate, todoPriority);
+    const todo = new ToDo(todoTitle, todoDescription, todoDate, todoPriority, false);
     currentProject.addTodo(todo);
 };
 createBtn.addEventListener("click", () => {
@@ -127,9 +128,10 @@ allProjects.addEventListener("click", (event) => {
 });
 function displayTodos(index){
     todoContainer.innerHTML = "";
-    projects[index].todos.forEach(todo => {
+    projects[index].todos.forEach((todo, todoIndex) => {
         const todoCard = document.createElement("div");
         todoCard.classList.add("card");
+        todoCard.dataset.todoIndex = todoIndex;
         const titleOfTodo = document.createElement("p");
         titleOfTodo.classList.add("cardTitle");
         titleOfTodo.textContent = `ToDo: ${todo.title}`;
@@ -156,5 +158,19 @@ function displayTodos(index){
         todoCard.appendChild(deleteTodoBtn);
         todoContainer.appendChild(todoCard);
         container.appendChild(todoContainer);
+
+        deleteTodoBtn.addEventListener("click", (event) => {
+            const card = event.target.closest(".card");
+            const todoIndex = Number(card.dataset.todoIndex);
+            projects[index].todos.splice(todoIndex, 1);
+            displayTodos(index);
+        });
+        checkbox.addEventListener("click", () => {
+            if (checkbox.checked === true){
+                todoCard.style.backgroundColor = "#8FDC97"
+            } else {
+                todoCard.style.backgroundColor = "#EFF1F3"
+            }
+        });
     });
 };
