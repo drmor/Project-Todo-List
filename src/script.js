@@ -5,13 +5,14 @@ const addProject = document.getElementById("addBtn");
 const confirmBtn = document.getElementById("confirmBtn");
 const createBtn = document.getElementById("createBtn");
 const closeBtn = document.querySelectorAll(".closeBtn");
-const projectBtn = document.querySelectorAll(".projectBtn");
 const allProjects = document.querySelector(".projectSelect");
 const addTodos = document.getElementById("addTodos");
 const container = document.querySelector(".container");
+const todoContainer = document.querySelector(".todo");
 
 let projects = [];
 let currentProject = null;
+let currentIndex = null;
 
 function Project(name, uuid){
     this.name = name;
@@ -53,6 +54,10 @@ function displayProjectsBtn(project){
     projectBtn.classList.add("projectBtn");
     deleteBtn.innerHTML = `<span style="color: #F45B69;">X</span>`;
 
+    projects.forEach((project, index) => {
+        projectBtn.setAttribute("data-index", index);
+    });
+
     projectBtn.addEventListener("click", () => {
         currentProject = project;
         addTodos.style.display = "block";
@@ -60,6 +65,10 @@ function displayProjectsBtn(project){
         displayProject()
     });
 
+    projectBtn.addEventListener("click", (e) => {
+        const index = e.target.getAttribute("data-index");
+        console.log("Нажат проект с индексом:", index);
+    });
     deleteBtn.addEventListener("click", () => {
         projects = projects.filter(p => p.uuid !== project.uuid);
         newProject.remove();
@@ -83,15 +92,16 @@ function getTodosValues(){
     const todo = new ToDo(todoTitle, todoDescription, todoDate, todoPriority);
     currentProject.addTodo(todo);
 };
-confirmBtn.addEventListener("click", () => {
-    getName();
-    popupWindow.style.display = "none";
-});
 createBtn.addEventListener("click", () => {
     getTodosValues();
     popupTodosWindow.style.display = "none";
     displayProject();
     console.log(projects);
+    displayTodos(currentIndex);
+});
+confirmBtn.addEventListener("click", () => {
+    getName();
+    popupWindow.style.display = "none";
 });
 function displayNumberOfProjects(){
     const titleDiv = document.querySelector(".title");
@@ -108,8 +118,18 @@ function displayProject(){
     projectTitle.textContent = `Project: ${currentProject.name}`;
 
     container.appendChild(projectTitle);
-
-    projects[0].todos.forEach(todo => {
+};
+allProjects.addEventListener("click", (event) => {
+    const btn = event.target;
+    if (btn.tagName === "BUTTON") {
+        const index = parseInt(btn.dataset.index);
+        currentIndex = index;
+        displayTodos(index);
+    };
+});
+function displayTodos(index){
+    todoContainer.innerHTML = "";
+    projects[index].todos.forEach(todo => {
         const todoCard = document.createElement("div");
         todoCard.classList.add("card");
         const titleOfTodo = document.createElement("p");
@@ -126,7 +146,7 @@ function displayProject(){
         todoCard.appendChild(descriptionOfTodo);
         todoCard.appendChild(dateOfTodo);
         todoCard.appendChild(priorityOfTodo);
-
-        container.appendChild(todoCard);
+        todoContainer.appendChild(todoCard);
+        container.appendChild(todoContainer);
     });
 };
