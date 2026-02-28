@@ -1,4 +1,5 @@
 import "./style.css";
+import { format } from "date-fns";
 const popupWindow = document.querySelector(".popup");
 const popupTodosWindow = document.querySelector(".popupTodos");
 const addProject = document.getElementById("addBtn");
@@ -84,7 +85,7 @@ function getName(){
 function getTodosValues(){
     const todoTitle = document.getElementById("title").value;
     const todoDescription = document.getElementById("description").value;
-    const todoDate = document.getElementById("date").value;
+    const todoDate = format(document.getElementById("date").value, "MMM dd yyyy");
     const todoPriority = document.getElementById("priority").value;
     const todo = new ToDo(todoTitle, todoDescription, todoDate, todoPriority);
     currentProject.addTodo(todo);
