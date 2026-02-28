@@ -139,11 +139,21 @@ function displayTodos(index){
         dateOfTodo.innerHTML = `<span style="font-weight:500;">Date:</span> ${todo.date}`;
         const priorityOfTodo = document.createElement("p");
         priorityOfTodo.innerHTML = `<span style="font-weight:500;">Priority:</span> ${todo.priority}`;
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = "done";
+        const deleteTodoBtn = document.createElement("button");
+        deleteTodoBtn.id = "remove";
+        deleteTodoBtn.innerHTML = `<span style="color: #F45B69;">X</span>`;
+        const div = document.createElement("div");
 
-        todoCard.appendChild(titleOfTodo);
-        todoCard.appendChild(descriptionOfTodo);
-        todoCard.appendChild(dateOfTodo);
-        todoCard.appendChild(priorityOfTodo);
+        todoCard.appendChild(div);
+        div.appendChild(titleOfTodo);
+        div.appendChild(descriptionOfTodo);
+        div.appendChild(dateOfTodo);
+        div.appendChild(priorityOfTodo);
+        todoCard.appendChild(checkbox);
+        todoCard.appendChild(deleteTodoBtn);
         todoContainer.appendChild(todoCard);
         container.appendChild(todoContainer);
     });
