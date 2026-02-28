@@ -187,11 +187,27 @@ function saveProjects() {
 function loadProjects() {
     const data = localStorage.getItem("projects");
 
-    if (data) {
-        projects = JSON.parse(data);
-    }
+    if (!data) return;
+
+    const parsedProjects = JSON.parse(data);
+
+    projects = parsedProjects.map(p => {
+        const project = new Project(p.name, p.uuid);
+
+        project.todos = p.todos.map(t =>
+            new ToDo(
+                t.title,
+                t.description,
+                t.date,
+                t.priority,
+                t.check
+            )
+        );
+
+        return project;
+    });
 }
 loadProjects();
 projects.forEach(project => {
     displayProjectsBtn(project);
-});
+});;
