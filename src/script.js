@@ -72,8 +72,10 @@ function displayProjectsBtn(project){
         newProject.remove();
         displayNumberOfProjects();
         container.innerHTML = "";
+        saveProjects();
     });
     displayNumberOfProjects();
+    saveProjects();
 };
 
 function getName(){
@@ -164,6 +166,7 @@ function displayTodos(index){
             const todoIndex = Number(card.dataset.todoIndex);
             projects[index].todos.splice(todoIndex, 1);
             displayTodos(index);
+            saveProjects();
         });
         checkbox.addEventListener("click", () => {
             if (checkbox.checked === true){
@@ -171,6 +174,24 @@ function displayTodos(index){
             } else {
                 todoCard.style.backgroundColor = "#EFF1F3"
             }
+            saveProjects();
         });
     });
 };
+function saveProjects() {
+    localStorage.setItem(
+        "projects",
+        JSON.stringify(projects)
+    );
+}
+function loadProjects() {
+    const data = localStorage.getItem("projects");
+
+    if (data) {
+        projects = JSON.parse(data);
+    }
+}
+loadProjects();
+projects.forEach(project => {
+    displayProjectsBtn(project);
+});
